@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <title>FriendFinder</title>
+</head>
+
+<body>
+  <style>
+    /*
+  Received the following message when linking to a separate stylesheet:
+  Refused to apply style from 'http://localhost:9999/assets/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+  */
+
+    .container {
+      background: teal;
+      width: 95%;
+      text-align: center;
+      color: white;
+      min-height: 700px;
+    }
+
+    .answers {
+      width: 40px;
+    }
+
+    #friendFinderResults {
+      color: black;
+    }
+
+    .test {
+      font-family: 'Courier New', Courier, monospace;
+      color: red;
+    }
+
+    #match {
+      color: black;
+    }
+
+    button {
+      margin-top: 15px;
+    }
+
+    #exampleModalLabel {
+      color: black;
+    }
+  </style>
+  <div class="container">
+    <h1>Survey Questions</h1>
+    <h3>About You</h3>
+    <form>
+      <p>Name (Required):</p>
+      <input class="name">
+      <p>Link to Photo Image (Required):</p>
+      <input class="photo">
+      <p>
+        <strong>Please answer the following survey questions.</strong>
+      </p>
+
+      <p> 1. You tend to surround yourself with like-minded people.</p>
+      <select name="choice" id="q1">
+        <option value="" disabled selected>Select</option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Agree)</option>
+      </select>
+      <div class="question2">
+        <p> 2. You'd rather have a couple of close friends than a large number of acquaintances.</p>
+        <select name="choice" id="q2">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question3">
+
+        <p> 3. You have a hard time saying 'no' to people.</p>
+        <select name="choice" id="q3">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question4">
+        <p> 4. You work best under pressure.</p>
+        <select name="choice" id="q4">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question5">
+        <p> 5. You prefer cold weather over hot weather.</p>
+        <select name="choice" id="q5">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question6">
+        <p> 6. You're comfortable going out to restaurants and movies solo.</p>
+        <select name="choice" id="q6">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question7">
+        <p> 7. An ideal night out involves close friends in a quiet setting instead of a crowd.</p>
+        <select name="choice" id="q7">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question8">
+        <p> 8. When time allows, you prefer cooking instead of going out to eat.</p>
+        <select name="choice" id="q8">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question9">
+        <p> 9. You often quote books, TV shows and movies when they relate to a real-life situation.</p>
+        <select name="choice" id="q9">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+      <div class="question10">
+        <p> 10. You prefer local businesses over chains.</p>
+        <select name="choice" id="q10">
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Strongly Agree)</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendFinderResults">
+        Submit
+      </button>
+    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="friendFinderResults" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Your match</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="match">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script type="text/JavaScript">
+$(document).ready(function () {
+    //JS included below as jQuery functions do not work in the friends.js file
+
+    $('#friendFinderResults').on('click', function () {
+        event.preventDefault();
+
+        //Convert scores from strings to numbers
+        let answer1 = parseInt($('#q1').val());
+        let answer2 = parseInt($('#q2').val());
+        let answer3 = parseInt($('#q3').val());
+        let answer4 = parseInt($('#q4').val());
+        let answer5 = parseInt($('#q5').val());
+        let answer6 = parseInt($('#q6').val());
+        let answer7 = parseInt($('#q7').val());
+        let answer8 = parseInt($('#q8').val());
+        let answer9 = parseInt($('#q9').val());
+        let answer10 = parseInt($('#q10').val());
+
+        let responses = {
+            name: $('.name').val().trim(),
+            photo: $('.photo').val().trim(),
+            scores: [
+                answer1,
+                answer2,
+                answer3,
+                answer4,
+                answer5,
+                answer6,
+                answer7,
+                answer8,
+                answer9,
+                answer10
+            ]
+        }
+        //console.log(friendData)
+        if (responses.name.length < 1 || responses.photo.length < 1) {
+            console.log("Please fill out any missing responses.")
+            $('#match').append('Please fill out any missing responses.');
+        }
+        else {
+            $('#match').html('Your match is: ');
+        }
+
+        //Clear responses from the form
+        $('.name').val('')
+        $('.photo').val('');
+
+
+        //Push friend data
+        $.post("/api/friends", responses).then(function(data) {
+                $('#match').html('test')
+                
+                console.log('data',data.name);
+                console.log(data);
+               
+            })
+            
+    })
+})
+
+//find closest match
+
+//compute differences of overall survey
+
+//calculate difference of each score
+//lowest total difference is the best match
+
+//Returns absolute value so there are no negative values when calculating matches
+// function difference(a, b) {
+//     return Math.abs(a - b);
+//   }
+
+//inner loop/outer loop to compare by position
+//outer loop/friends
+//inner compare by index [0], etc.
+//double loop structure
+    
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+
+  .container {
+    background: teal;
+    width: 95%;
+    text-align: center;
+    color: white;
+   min-height: 700px;
+  }
+  .answers {
+    width: 40px;
+  }
+  #friendFinderResults {
+    color: black;
+  }
+  .test {
+    font-family: 'Courier New', Courier, monospace;
+    color: red;
+  }
+  #match {
+    color: black;
+  }
+  button {
+    margin-top: 15px;
+  }
+  #exampleModalLabel {
+    color: black;
+  }
