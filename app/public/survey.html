@@ -231,16 +231,12 @@ $(document).ready(function () {
                 answer10
             ]
         }
+        console.log(responses)
 
         //Check array of numbers for NaN values & handle in if statement below.
         let numberArray = responses.scores;
 
-        for (k = 0; k < numberArray.length; k++) {
-            if (numberArray[k] === false || Number.isNaN(numberArray[k])) {
-                //If any values were NaN, the below text will show for a split second, then return the best match.
-                $('.result').html('Please fill out any missing responses.');
-            }
-            else {
+
                 //Check for missing name or photo link.
                 if (responses.name.length < 1 || responses.photo.length < 1) {
                     console.log("Please fill out any missing responses.")
@@ -273,10 +269,10 @@ $(document).ready(function () {
                         //$('.resultpic').html("<img src="+data.photo+">");
                     })
                 }
-            }
-        }
+            })
+        
     })
-})
+
     </script>
 </body>
 
