@@ -14,7 +14,7 @@ module.exports = function (app) {
 let bestMatch = {
     name: "",
     photo: "",
-    difference: 60
+    difference: 9999
 };
 
 let userInput = req.body;
