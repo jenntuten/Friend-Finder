@@ -180,10 +180,13 @@
         </select>
       </div>
 
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendFinderResults">
+      <button class="submit">
         Submit
       </button>
     </form>
+    <h3 class="result"></h3>
+    <h4 class="resultname"></h4>
+    <div class="resultpic" src=""></div>
     <!-- Modal 
     <div class="modal fade" id="friendFinderResults" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -209,9 +212,9 @@
 $(document).ready(function () {
     //JS included below as jQuery functions do not work in the friends.js file
 
-    $('#friendFinderResults').on('click', function () {
+    $('.submit').on('click', function () {
         event.preventDefault();
-
+        //window.location='/results';
         //Convert scores from strings to numbers
         let answer1 = parseInt($('#q1').val());
         let answer2 = parseInt($('#q2').val());
@@ -252,37 +255,22 @@ $(document).ready(function () {
         //Clear responses from the form
         $('.name').val('')
         $('.photo').val('');
-
+        $('.answers').val('');
 
         //Push friend data
         $.post("/api/friends", responses).then(function(data) {
-         // $('#match').text("Your best match is: ",data.name);
-             //   $('#matchPhoto').attr('src', data.photo)
-                console.log('Best Match: ',data.name);
-                console.log('Best Match: ',data.photo);
-               //$('friendFinderResults').modal('show')
-               window.location='/results'
+//Modal popped up after submitting, but did not return the results below in the modal body. For now, these details are displayed at the bottom of the survey page.
+                $('.result').html('Your best match is: ',data.name);
+                $('.resultname').html(data.name);
+                //Commented out due to the following error message:
+                //Cross-Origin Read Blocking (CORB) blocked cross-origin response https://imgur.com/a/T19tDQG with MIME type text/html. See https://www.chromestatus.com/feature/5629709824032768 for more details.
+                $('.resultpic').html("<img src="+data.photo+">");
+               
+               
             })
             
     })
 })
-
-//find closest match
-
-//compute differences of overall survey
-
-//calculate difference of each score
-//lowest total difference is the best match
-
-//Returns absolute value so there are no negative values when calculating matches
-// function difference(a, b) {
-//     return Math.abs(a - b);
-//   }
-
-//inner loop/outer loop to compare by position
-//outer loop/friends
-//inner compare by index [0], etc.
-//double loop structure
     
     </script>
 

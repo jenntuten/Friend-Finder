@@ -56,11 +56,15 @@
       </style>
   <div class="container">
     <h1>Friend Finder</h1>
-    <button type="button" class="btn btn-secondary" id="survey" href="/survey.html">Find your match now!</button>
+    <!--<h2>Your best match is:</h2>-->
+    <h3 class="result"></h3>
+    <button type="button" class="btn btn-secondary" id="survey" href="/survey.html">Take the survey again!</button>
 
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/JavaScript">
+console.log('loaded')
+$('.result').append(data.name)
   $('#survey').on('click',function() {
     console.log('button clicked')
     window.location='/survey';
