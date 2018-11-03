@@ -34,7 +34,15 @@
       color: white;
       min-height: 1200px;
     }
-
+.modal-body {
+  color: black;
+}
+.modal-header {
+  text-align: center;
+}
+.resultPic {
+  width: 300px;
+}
     #match {
       color: black;
     }
@@ -174,8 +182,8 @@
     </form>
     <h3 class="result"></h3>
     <h4 class="resultname"></h4>
-    <div class="resultpic" src=""></div>
-    <!-- Modal
+    <div class="resultpic"></div>
+    <!-- Modal-->
     <div class="modal" id="friendFinderResults" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -186,14 +194,16 @@
             </button>
           </div>
           <div class="modal-body">
+            <h2 class="modal-header"></h2>
             <h1 class="yourMatch"></h1>
+            <img class="resultPic">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- Optional JavaScript -->
     <script type="text/JavaScript">
 $(document).ready(function () {
@@ -236,11 +246,12 @@ $(document).ready(function () {
         //Check array of numbers for NaN values & handle in if statement below.
         let numberArray = responses.scores;
 
-
                 //Check for missing name or photo link.
-                if (responses.name.length < 1 || responses.photo.length < 1) {
+                if (responses.name.length < 1 || responses.photo.length < 1 && numberArray.length === 10) {
                     console.log("Please fill out any missing responses.")
-                    $('.result').html('Please fill out any missing responses.');
+                    $('#friendFinderResults').modal('show');
+                    $('.modal-header').text('Please fill out any missing responses.');
+                    
                 }
                 else {
                     //Clear responses from the form
@@ -259,18 +270,15 @@ $(document).ready(function () {
 
                     //Push friend data
                     $.post("/api/friends", responses).then(function (data) {
-                        //Modal popped up after submitting, but did not return the results below in the modal body. For now, these details are displayed at the bottom of the survey page.
-                        //$('#friendFinderResults').modal('show');
-                        //$('.yourMatch').text(data.name);
-                        $('.result').html('Your best match is: ');
-                        $('.resultname').html(data.name);
-                        //Commented out due to the following error message:
-                        //Cross-Origin Read Blocking (CORB) blocked cross-origin response https://imgur.com/a/T19tDQG with MIME type text/html. See https://www.chromestatus.com/feature/5629709824032768 for more details.
-                        //$('.resultpic').html("<img src="+data.photo+">");
+                      
+                       //Display friend data in modal
+                        $('#friendFinderResults').modal('show');
+                        $('.modal-header').text('Your match is:');
+                        $('.yourMatch').text(data.name);
+                        $('.resultPic').attr("src",data.photo);                     
                     })
                 }
             })
-        
     })
 
     </script>
