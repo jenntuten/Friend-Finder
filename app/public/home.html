@@ -15,47 +15,39 @@
 </head>
 
 <body>
-    <style>
-        /*
+  <style>
+    /*
       Received the following message when linking to a separate stylesheet:
       Refused to apply style from 'http://localhost:9898/assets/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
       */
-    
-        .container {
-          background: teal;
-          width: 95%;
-          text-align: center;
-          color: white;
-          min-height: 700px;
-        }
-    
-        .answers {
-          width: 40px;
-        }
-    
-        #friendFinderResults {
-          color: black;
-        }
-    
-        .test {
-          font-family: 'Courier New', Courier, monospace;
-          color: red;
-        }
-    
-        #match {
-          color: black;
-        }
-    
-        button {
-          margin-top: 15px;
-        }
-    
-        #exampleModalLabel {
-          color: black;
-        }
-      </style>
+
+    body {
+      background: url("https://www.toptal.com/designers/subtlepatterns/patterns/light-grey-terrazzo.png");
+    }
+
+    .container {
+      background: teal;
+      width: 95%;
+      text-align: center;
+      color: white;
+      min-height: 700px;
+    }
+
+    #match {
+      color: black;
+    }
+
+    button {
+      margin-top: 15px;
+    }
+
+    #exampleModalLabel {
+      color: black;
+    }
+  </style>
   <div class="container">
     <h1>Friend Finder</h1>
+    <p>Take this quick survey to find your new best friend!</p>
     <button type="button" class="btn btn-secondary" id="survey" href="/survey.html">Find your match now!</button>
 
   </div>

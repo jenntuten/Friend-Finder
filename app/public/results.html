@@ -63,8 +63,10 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/JavaScript">
-console.log('loaded')
-$('.result').append(data.name)
+$.get('survey', null, function(text){
+    console.log(find('.result'));
+});
+//$('.result').append(data.name)
   $('#survey').on('click',function() {
     console.log('button clicked')
     window.location='/survey';
