@@ -22,7 +22,7 @@
   <style>
     /*
   Received the following message when linking to a separate stylesheet:
-  Refused to apply style from 'http://localhost:9999/assets/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+  Refused to apply style from 'http://localhost:9898/assets/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
   */
 
     .container {
@@ -194,8 +194,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id="match">
-
+          <div class="modal-body">
+            <h3 id="match"></h3>
+            <img id="matchPhoto" src="" width="300">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -255,10 +256,11 @@ $(document).ready(function () {
 
         //Push friend data
         $.post("/api/friends", responses).then(function(data) {
-                $('#match').html('test')
-                
-                console.log('data',data.name);
-                console.log(data);
+          $('#match').text("Your best match is: ",data.name);
+                $('#matchPhoto').attr('src', data.photo)
+                console.log('Best Match: ',data.name);
+                console.log('Best Match: ',data.photo);
+               $('friendFinderResults').modal('show')
                
             })
             

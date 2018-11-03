@@ -12,6 +12,35 @@ module.exports = function (app) {
 //Compare user with existing friends
 //Loop through friends and calculate differences
 //Return result & display in modal
+let bestMatch = {
+    name: "",
+    photo: "",
+    difference: 100
 
-})
+};
+
+let userInput = req.body;
+let userScores = userInput.scores;
+
+//Double for loop in order to loop through friends first, then through each friend's scores. 
+for (let i = 0; i < friendData.length; i++) {
+    let totalDifference = 0;
+
+    //Find absolute value of differences so there are no negative values.
+    for (let j = 0; j < friendData[i].scores[j]; j++) {
+        totalDifference += Math.abs(userScores[j] - friendData[i].scores[j]);
+
+        //Determine best match.
+        if (totalDifference <= bestMatch.difference) {
+            bestMatch.name = friendData[i].name;
+            bestMatch.photo = friendData[i].photo;
+            bestMatch.difference = totalDifference
+        }
+    }
+}
+//Push new user to database where they will be displayed at api/friends.
+friendData.push(userInput);
+
+res.json(bestMatch);
+});
 }
