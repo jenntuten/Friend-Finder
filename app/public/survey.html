@@ -8,6 +8,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
+   <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css">-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
@@ -34,15 +35,19 @@
       color: white;
       min-height: 1200px;
     }
-.modal-body {
-  color: black;
-}
-.modal-header {
-  text-align: center;
-}
-.resultPic {
-  width: 300px;
-}
+
+    .modal-body {
+      color: black;
+    }
+
+    .modal-header {
+      text-align: center;
+    }
+
+    .resultPic {
+      width: 300px;
+    }
+
     #match {
       color: black;
     }
@@ -208,79 +213,95 @@
     <script type="text/JavaScript">
 $(document).ready(function () {
 
-    //JS included below as jQuery functions do not work in the friends.js file
-    $('.submit').on('click', function () {
-        event.preventDefault();
+//JS included below as jQuery functions do not work in the friends.js file
+$('.submit').on('click', function () {
+    event.preventDefault();
 
-        //Convert scores from strings to numbers
-        let answer1 = parseInt($('#q1').val());
-        let answer2 = parseInt($('#q2').val());
-        let answer3 = parseInt($('#q3').val());
-        let answer4 = parseInt($('#q4').val());
-        let answer5 = parseInt($('#q5').val());
-        let answer6 = parseInt($('#q6').val());
-        let answer7 = parseInt($('#q7').val());
-        let answer8 = parseInt($('#q8').val());
-        let answer9 = parseInt($('#q9').val());
-        let answer10 = parseInt($('#q10').val());
+    //Convert scores from strings to numbers.
+    let answer1 = parseInt($('#q1').val());
+    let answer2 = parseInt($('#q2').val());
+    let answer3 = parseInt($('#q3').val());
+    let answer4 = parseInt($('#q4').val());
+    let answer5 = parseInt($('#q5').val());
+    let answer6 = parseInt($('#q6').val());
+    let answer7 = parseInt($('#q7').val());
+    let answer8 = parseInt($('#q8').val());
+    let answer9 = parseInt($('#q9').val());
+    let answer10 = parseInt($('#q10').val());
 
-        //Record user responses
-        let responses = {
-            name: $('.name').val().trim(),
-            photo: $('.photo').val().trim(),
-            scores: [
-                answer1,
-                answer2,
-                answer3,
-                answer4,
-                answer5,
-                answer6,
-                answer7,
-                answer8,
-                answer9,
-                answer10
-            ]
-        }
-        console.log(responses)
+    //Record user responses.
+    let responses = {
+        name: $('.name').val().trim(),
+        photo: $('.photo').val().trim(),
+        scores: [
+            answer1,
+            answer2,
+            answer3,
+            answer4,
+            answer5,
+            answer6,
+            answer7,
+            answer8,
+            answer9,
+            answer10
+        ]
+    }
 
-        //Check array of numbers for NaN values & handle in if statement below.
-        let numberArray = responses.scores;
+    let numberArray = responses.scores;
+    //Check array of numbers for NaN values & handle in if statement below.
+    let ans1 = isNaN(parseFloat(numberArray[0]));
+    let ans2 = isNaN(parseFloat(numberArray[1]));
+    let ans3 = isNaN(parseFloat(numberArray[2]));
+    let ans4 = isNaN(parseFloat(numberArray[3]));
+    let ans5 = isNaN(parseFloat(numberArray[4]));
+    let ans6 = isNaN(parseFloat(numberArray[5]));
+    let ans7 = isNaN(parseFloat(numberArray[6]));
+    let ans8 = isNaN(parseFloat(numberArray[7]));
+    let ans9 = isNaN(parseFloat(numberArray[8]));
+    let ans10 = isNaN(parseFloat(numberArray[9]));
+    //Check for NaN values in responses and blanks in the Name/Link fields.
+    if (ans1 === true ||
+        ans2 === true ||
+        ans3 === true ||
+        ans4 === true ||
+        ans5 === true ||
+        ans6 === true ||
+        ans7 === true ||
+        ans8 === true ||
+        ans9 === true ||
+        ans10 === true ||
+        responses.name.length < 1 ||
+        responses.photo.length < 1) {
+        $('#friendFinderResults').modal('show');
+        $('.modal-header').text('Please fill out any missing responses.');
+    }
+    else {
+        //Clear responses from the form.
+        $('.name').val("")
+        $('.photo').val("");
+        $('#q1').val("");
+        $('#q2').val("");
+        $('#q3').val("");
+        $('#q4').val("");
+        $('#q5').val("");
+        $('#q6').val("");
+        $('#q7').val("");
+        $('#q8').val("");
+        $('#q9').val("");
+        $('#q10').val("");
 
-                //Check for missing name or photo link.
-                if (responses.name.length < 1 || responses.photo.length < 1 && numberArray.length === 10) {
-                    console.log("Please fill out any missing responses.")
-                    $('#friendFinderResults').modal('show');
-                    $('.modal-header').text('Please fill out any missing responses.');
-                    
-                }
-                else {
-                    //Clear responses from the form
-                    $('.name').val("")
-                    $('.photo').val("");
-                    $('#q1').val("");
-                    $('#q2').val("");
-                    $('#q3').val("");
-                    $('#q4').val("");
-                    $('#q5').val("");
-                    $('#q6').val("");
-                    $('#q7').val("");
-                    $('#q8').val("");
-                    $('#q9').val("");
-                    $('#q10').val("");
+        //Post friend data.
+        $.post("/api/friends", responses).then(function (data) {
 
-                    //Push friend data
-                    $.post("/api/friends", responses).then(function (data) {
-                      
-                       //Display friend data in modal
-                        $('#friendFinderResults').modal('show');
-                        $('.modal-header').text('Your match is:');
-                        $('.yourMatch').text(data.name);
-                        $('.resultPic').attr("src",data.photo);                     
-                    })
-                }
-            })
-    })
-
+            //Display friend data in modal.
+            $('#friendFinderResults').modal('show');
+            $('.modal-header').text('Your match is:');
+            $('.yourMatch').text(data.name);
+            $('.resultPic').attr("src", data.photo);
+        })
+    }
+})
+})
     </script>
 </body>
 

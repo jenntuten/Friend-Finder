@@ -1,0 +1,35 @@
+body {
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/light-grey-terrazzo.png");
+}
+
+.container {
+  background: teal;
+  width: 95%;
+  text-align: center;
+  color: white;
+  min-height: 1200px;
+}
+
+.modal-body {
+  color: black;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.resultPic {
+  width: 300px;
+}
+
+#match {
+  color: black;
+}
+
+button {
+  margin-top: 15px;
+}
+
+#exampleModalLabel {
+  color: black;
+}
